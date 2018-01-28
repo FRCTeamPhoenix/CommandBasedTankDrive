@@ -1,0 +1,38 @@
+package org.usfirst.frc.team2342.robot.subsystems;
+
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.command.Subsystem;
+
+public class PCMHandler extends Subsystem {
+	
+	public Compressor compressor = new Compressor(11);
+	
+	Solenoid highGear = new Solenoid(1);
+	Solenoid lowGear = new Solenoid(0);
+	
+	public void on() {
+		compressor.start();
+	}
+	
+	public void off() {
+		compressor.stop();
+	}
+	
+	public void setHighGear() {
+		lowGear.set(false);
+		highGear.set(true);
+	}
+	
+	public void setLowGear() {
+		highGear.set(false);
+		lowGear.set(true);
+	}
+	
+	@Override
+	public void initDefaultCommand() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}
