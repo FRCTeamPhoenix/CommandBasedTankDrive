@@ -8,8 +8,8 @@ public class PCMHandler extends Subsystem {
 	
 	public Compressor compressor = new Compressor(11);
 	
-	Solenoid highGear = new Solenoid(1);
-	Solenoid lowGear = new Solenoid(0);
+	Solenoid highGear = new Solenoid(11, 1);
+	Solenoid lowGear = new Solenoid(11, 0);
 	
 	public void on() {
 		compressor.start();

@@ -11,8 +11,9 @@ import org.usfirst.frc.team2342.robot.commands.DriveBackward;
 import org.usfirst.frc.team2342.robot.commands.DriveForward;
 import org.usfirst.frc.team2342.robot.commands.RotateLeft;
 import org.usfirst.frc.team2342.robot.commands.RotateRight;
+import org.usfirst.frc.team2342.robot.commands.SetHighGear;
+import org.usfirst.frc.team2342.robot.commands.SetLowGear;
 
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -20,19 +21,22 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
-public class OI { //8 forward, 9 backward
-	Joystick stick = new Joystick(2);
-	
-	Button forwardButton = new JoystickButton(stick, 8);
-	Button backwardButton = new JoystickButton(stick, 9);
-	Button rotateLeft = new JoystickButton(stick, 6);
-	Button rotateRight = new JoystickButton(stick, 11);
-	
+public class OI { // 8 forward, 9 backward
+
+	Button forwardButton = new JoystickButton(Robot.kLeftJoystick, 8);
+	Button backwardButton = new JoystickButton(Robot.kLeftJoystick, 9);
+	Button rotateLeft = new JoystickButton(Robot.kLeftJoystick, 6);
+	Button rotateRight = new JoystickButton(Robot.kLeftJoystick, 11);
+	Button highGearSwitch = new JoystickButton(Robot.kLeftJoystick, 5);
+	Button lowGearSwitch = new JoystickButton(Robot.kLeftJoystick, 4);
+
 	public OI() {
-		forwardButton.whenPressed(new DriveForward(3));   //Button 8
-		backwardButton.whenPressed(new DriveBackward(3));  //Button 9
-		rotateLeft.whenPressed(new RotateLeft(3));       //Button 6
-		rotateRight.whenPressed(new RotateRight(3));      //Button 11
+		forwardButton.whenPressed(new DriveForward(3)); // Button 8
+		backwardButton.whenPressed(new DriveBackward(3)); // Button 9
+		rotateLeft.whenPressed(new RotateLeft(3)); // Button 6
+		rotateRight.whenPressed(new RotateRight(3)); // Button 11
+		highGearSwitch.whenPressed(new SetHighGear()); // Button 5
+		lowGearSwitch.whenPressed(new SetLowGear()); // Button 4
 	}
 
 	// There are a few additional built in buttons you can use. Additionally,

@@ -1,32 +1,34 @@
 package org.usfirst.frc.team2342.robot.commands;
 
+import org.usfirst.frc.team2342.robot.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
 
-public class RegulateCompressor extends Command {
+public class DriveR extends Command {
+
+	double power;
 	
-	public RegulateCompressor() {
+	public DriveR(double stickY) {
 		// Use requires() here to declare subsystem dependencies
+		requires(Robot.kDriveTrainR);
+		power = stickY;
 	}
 
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
+		Robot.kDriveTrainR.goR(power);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-/*		if(Robot.kPCMHandler.compressor.getPressureSwitchValue()) {
-			Robot.kPCMHandler.on();
-		} else {
-			Robot.kPCMHandler.off();
-		}*/
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return true;
 	}
 
 	// Called once after isFinished returns true
@@ -38,6 +40,6 @@ public class RegulateCompressor extends Command {
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
-		end();
+		Robot.kDriveTrainR.stopR();
 	}
 }

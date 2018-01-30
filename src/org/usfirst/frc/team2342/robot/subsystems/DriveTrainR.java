@@ -13,26 +13,38 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- * An example subsystem.  You can replace me with your own Subsystem.
+ * An example subsystem. You can replace me with your own Subsystem.
  */
 public class DriveTrainR extends Subsystem {
-	
+
 	TalonSRX motorFR = new TalonSRX(2);
 	TalonSRX motorBR = new TalonSRX(4);
-	
+	public boolean executingCommand = false;
+
+	double maxPower = 0.5;
+
 	public void goForwardR() {
 		motorFR.set(ControlMode.PercentOutput, 0.5);
 		motorBR.set(ControlMode.PercentOutput, 0.5);
+		executingCommand = true;
 	}
-	
+
 	public void goBackwardR() {
 		motorFR.set(ControlMode.PercentOutput, -0.5);
 		motorBR.set(ControlMode.PercentOutput, -0.5);
+		executingCommand = true;
 	}
-	
+
+	public void goR(double power) {
+		motorFR.set(ControlMode.PercentOutput, power * maxPower);
+		motorBR.set(ControlMode.PercentOutput, power * maxPower);
+		executingCommand = true;
+	}
+
 	public void stopR() {
 		motorFR.set(ControlMode.PercentOutput, 0);
 		motorBR.set(ControlMode.PercentOutput, 0);
+		executingCommand = false;
 	}
 
 	public void initDefaultCommand() {
